@@ -11,21 +11,14 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    WHO_OUTPUT = sh (
-                        script: 'who',
-                        returnStdout: true
-                    ).trim()
-
-
                     PWD_OUTPUT = sh (
                         script: 'pwd',
                         returnStdout: true
                     ).trim()
                 }
-                echo "I am : ${WHO_OUTPUT}"
-                echo "At : ${PWD_OUTPUT}"
+                echo "Current path : ${PWD_OUTPUT}"
 
-                sh 'mvn --version'
+                sh 'mvn clean install'
             }
         }
     }
