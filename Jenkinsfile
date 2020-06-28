@@ -58,7 +58,7 @@ pipeline {
 
                 script {
                     //Docker Variables
-                    DOCKER_IMAGE_TAG = "serving-web-content:$GIT_TAG"
+                    DOCKER_IMAGE_TAG = "serving-web-content:0.0.1-SNAPSHOT"
                 }
 
                 //Unstash the files and extract
