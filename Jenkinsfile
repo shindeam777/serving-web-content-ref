@@ -58,7 +58,7 @@ pipeline {
 
                 script {
                     //Docker Variables
-                    DOCKER_IMAGE_TAG = "${ORG_NAME}/serving-web-content:$GIT_TAG"
+                    DOCKER_IMAGE_TAG = "serving-web-content:$GIT_TAG"
                 }
 
                 //Unstash the files and extract
@@ -76,10 +76,10 @@ pipeline {
                 failure {
                     echo "Docker image[$DOCKER_IMAGE_TAG] creation or publishing failed."
                 }
-                cleanup {
-                    //Clean-up the workspace
-                    cleanUpWorkSpace("${STAGE_NAME}")
-                }
+//                cleanup {
+//                    //Clean-up the workspace
+//                    cleanUpWorkSpace("${STAGE_NAME}")
+//                }
             }
         }
     }
