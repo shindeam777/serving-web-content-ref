@@ -58,7 +58,7 @@ pipeline {
 
                 script {
                     //Docker Variables
-                    DOCKER_IMAGE_TAG = "serving-web-content:0.0.1-SNAPSHOT"
+                    DOCKER_IMAGE_TAG = "jensonjoseph/spring-boot-docker:0.0.1-SNAPSHOT"
                 }
 
                 //Unstash the files and extract
@@ -67,7 +67,13 @@ pipeline {
 
                 unstash "serving-web-content-Dockerfile"
 
-                //publish code goes here
+                script {
+                    echo "Creating and publishing docker image"
+                    docker.withRegistry("https://hub.docker.com", "${JENSON_DOCKER_HUB}") {
+                        def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
+                        dockerImage.push()
+                    }
+                }
             }
             post {
                 success {
