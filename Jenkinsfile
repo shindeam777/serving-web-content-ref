@@ -69,10 +69,8 @@ pipeline {
 
                 script {
                     echo "Creating and publishing docker image"
-                    docker.withRegistry("JENSON_DOCKER_HUB") {
-                        def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
-                        dockerImage.push()
-                    }
+                    def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
+                    dockerImage.push()
                 }
             }
             post {
