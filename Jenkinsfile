@@ -7,16 +7,19 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                WHO_OUTPUT = sh (
-                    script: 'who',
-                    returnStdout: true
-                ).trim()
-                echo "I am : ${WHO_OUTPUT}"
+                script {
+                    WHO_OUTPUT = sh (
+                        script: 'who',
+                        returnStdout: true
+                    ).trim()
 
-                PWD_OUTPUT = sh (
-                    script: 'pwd',
-                    returnStdout: true
-                ).trim()
+
+                    PWD_OUTPUT = sh (
+                        script: 'pwd',
+                        returnStdout: true
+                    ).trim()
+                }
+                echo "I am : ${WHO_OUTPUT}"
                 echo "At : ${PWD_OUTPUT}"
 
                 sh 'mvn --version'
