@@ -25,7 +25,7 @@ pipeline {
                 }
                 echo "Current path : ${PWD_OUTPUT}"
 
-                sh 'mvn clean install'
+                sh 'mvn clean install -DskipTests'
             }
             post {
                 success {
