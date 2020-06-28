@@ -75,18 +75,18 @@ pipeline {
                     }
                 }
             }
-        }
-        post {
-            success {
-                echo "Docker image[$DOCKER_IMAGE_TAG] created and published."
-            }
-            failure {
-                echo "Docker image[$DOCKER_IMAGE_TAG] creation or publishing failed."
-            }
+            post {
+                success {
+                    echo "Docker image[$DOCKER_IMAGE_TAG] created and published."
+                }
+                failure {
+                    echo "Docker image[$DOCKER_IMAGE_TAG] creation or publishing failed."
+                }
 //                cleanup {
 //                    //Clean-up the workspace
 //                    cleanUpWorkSpace("${STAGE_NAME}")
 //                }
+            }
         }
     }
 }
