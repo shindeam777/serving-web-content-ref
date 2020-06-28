@@ -3,9 +3,9 @@ pipeline {
         any {
             image 'maven:3.3.3'
         }
-        tools {
-            maven 'M3'
-        }
+    }
+    tools {
+        maven 'M3'
     }
     stages {
         stage('build') {
