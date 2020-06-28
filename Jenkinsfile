@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
 //    tools {
@@ -6,10 +7,14 @@ pipeline {
     stages {
         stage('build') {
             agent {
+            agent {
                 docker { image 'maven:3-alpine' }
             }
+            script {
+                PROJ_NAME = "serving-web-content"
+            }
             steps {
-                echo "Starting Checkout and Build stage. ORG_NAME: ${ORG_NAME}, PROJ_NAME:${PROJ_NAME}"
+                echo "Starting Checkout and Build stage."
                 //Clean up the workspace
                 sh "rm -rf *"
 
@@ -54,10 +59,10 @@ pipeline {
                 failure {
                     echo "Checkout and build failed!!!"
                 }
-                cleanup {
-                    //Clean-up the workspace
-                    cleanUpWorkSpace("${STAGE_NAME}")
-                }
+//                cleanup {
+//                    //Clean-up the workspace
+//                    cleanUpWorkSpace("${STAGE_NAME}")
+//                }
             }
         }
         stage('Dockerization') {
