@@ -69,24 +69,25 @@ pipeline {
 
                 script {
                     echo "Creating and publishing docker image"
-                    docker.withRegistry("docker.io", "JENSON_DOCKER_HUB") {
-                        def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
+                    def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
+                    withCredentials([usernameColonPassword(credentialsId: 'mylogin', variable: 'USERPASS')]) {
                         dockerImage.push()
                     }
                 }
             }
-            post {
-                success {
-                    echo "Docker image[$DOCKER_IMAGE_TAG] created and published."
-                }
-                failure {
-                    echo "Docker image[$DOCKER_IMAGE_TAG] creation or publishing failed."
-                }
+        }
+        post {
+            success {
+                echo "Docker image[$DOCKER_IMAGE_TAG] created and published."
+            }
+            failure {
+                echo "Docker image[$DOCKER_IMAGE_TAG] creation or publishing failed."
+            }
 //                cleanup {
 //                    //Clean-up the workspace
 //                    cleanUpWorkSpace("${STAGE_NAME}")
 //                }
-            }
         }
     }
+}
 }
