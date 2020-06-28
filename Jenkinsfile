@@ -70,7 +70,7 @@ pipeline {
                 script {
                     echo "Creating and publishing docker image"
                     def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
-                    withCredentials([usernameColonPassword(credentialsId: 'mylogin', variable: 'USERPASS')]) {
+                    withCredentials([usernameColonPassword(credentialsId: 'JENSON_DOCKER_HUB', variable: 'USERPASS')]) {
                         dockerImage.push()
                     }
                 }
