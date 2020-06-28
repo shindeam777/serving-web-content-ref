@@ -1,13 +1,13 @@
 pipeline {
     agent any
-//    tools {
-//        maven 'M3'
-//    }
+    tools {
+        maven 'M3'
+    }
     stages {
         stage('build') {
-            agent {
-                docker { image 'maven:3-alpine' }
-            }
+//            agent {
+//                docker { image 'maven:3-alpine' }
+//            }
             steps {
                 script {
                     PWD_OUTPUT = sh(
