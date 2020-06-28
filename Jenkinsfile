@@ -69,7 +69,7 @@ pipeline {
 
                 script {
                     echo "Creating and publishing docker image"
-                    docker.withRegistry("dockerhub", "JENSON_DOCKER_HUB") {
+                    docker.withRegistry("JENSON_DOCKER_HUB") {
                         def dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
                         dockerImage.push()
                     }
