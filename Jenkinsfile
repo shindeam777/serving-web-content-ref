@@ -12,19 +12,8 @@ pipeline {
             }
             steps {
                 echo "Starting Checkout and Build stage."
-                //Clean up the workspace
-                sh "rm -rf *"
-
                 checkout scm
 
-                script {
-                    //Get the GIT Commit Tag
-                    GIT_TAG = sh(returnStdout: true, script: "git log -1 --do-walk --pretty=format:%h").trim()
-                }
-                echo "GIT_TAG: ${GIT_TAG}"
-
-                //Set the buildName to the GIT Commit Hash
-                buildName "${GIT_TAG}"
 
                 echo "The build name is set to: ${env.BUILD_DISPLAY_NAME}"
 
