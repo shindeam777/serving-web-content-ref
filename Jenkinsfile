@@ -1,19 +1,20 @@
 pipeline {
     agent {
-        any {
-            image 'maven:3.3.3'
-        }
+        any
     }
-    tools {
-        maven 'M3'
-    }
+//    tools {
+//        maven 'M3'
+//    }
     stages {
         stage('build') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
             steps {
                 script {
-                    PWD_OUTPUT = sh (
-                        script: 'pwd',
-                        returnStdout: true
+                    PWD_OUTPUT = sh(
+                            script: 'pwd',
+                            returnStdout: true
                     ).trim()
                 }
                 echo "Current path : ${PWD_OUTPUT}"
