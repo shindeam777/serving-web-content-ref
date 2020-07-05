@@ -58,7 +58,7 @@ pipeline {
 
                 script {
                     //Docker Variables
-                    DOCKER_IMAGE_TAG = "jensonjoseph/spring-boot-docker:0.0.1-SNAPSHOT"
+                    DOCKER_IMAGE_TAG = "jensonjoseph/spring-boot-docker:0.0.2-SNAPSHOT"
                 }
 
                 //Unstash the files and extract
